@@ -1,4 +1,4 @@
-name: Build
+name: Code quality and build
 on: [push, pull_request]
 jobs:
   build:
@@ -9,4 +9,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - run: npm run lint
       - run: npm run build
+      - run: npm run format:check
+        continue-on-error: true
