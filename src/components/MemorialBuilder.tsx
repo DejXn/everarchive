@@ -4,7 +4,7 @@ export function MemorialBuilder({ chosen }: { chosen: Memory[] }) {
   const [title, setTitle] = useState('');
   const [preview, setPreview] = useState(false);
   return (
-    <section className="memorial">
+    <section className="memorial" id="memorial">
       <p className="eyebrow">KEEP THEIR STORY ALIVE</p>
       <h2>Build a memorial</h2>
       <p>Select memories above to create a printable tribute.</p>
@@ -25,11 +25,13 @@ export function MemorialBuilder({ chosen }: { chosen: Memory[] }) {
         <div className="tribute">
           <h2>{title.trim() || 'In loving memory'}</h2>
           {chosen.map((m) => (
-            <article key={m.id}>
+            <article key={m.id} className="book-spread">
               {m.image && <img src={m.image} alt={m.person} />}
-              <h3>{m.person}</h3>
-              <p>{m.text}</p>
-              <small>{m.date}</small>
+              <div className="spread-copy">
+                <h3>{m.person}</h3>
+                <p>{m.text}</p>
+                <small>{m.date}</small>
+              </div>
             </article>
           ))}
           <button onClick={() => window.print()}>Print / Save PDF</button>

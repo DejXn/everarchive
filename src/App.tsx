@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ImportPanel } from './components/ImportPanel';
 import type { Memory } from './types';
 import { useMemories } from './hooks/useMemories';
 import { SiteHeader, Hero, SiteFooter } from './components/SiteLayout';
@@ -39,7 +40,7 @@ export default function App() {
             {error}
           </p>
         )}
-        <section className="workspace">
+        <section className="workspace" id="archive">
           <MemoryArchive
             memories={memories}
             ready={ready}
@@ -59,6 +60,7 @@ export default function App() {
             onCancel={() => setEditing(undefined)}
           />
         </section>
+        <ImportPanel ready={ready} onSave={upsert} />
         <MemorialBuilder chosen={chosen} />
       </main>
       <SiteFooter />
