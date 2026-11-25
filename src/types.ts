@@ -1,0 +1,1 @@
+export interface Memory { id:string; person:string; text:string; date:string; image?:string }
