@@ -12,6 +12,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<string[]>([]);
   const [editing, setEditing] = useState<Memory>();
+  const [formOpen, setFormOpen] = useState(false);
   function select(id: string, checked: boolean) {
     setSelected((current) =>
       checked ? [...current, id] : current.filter((item) => item !== id),
@@ -19,7 +20,7 @@ export default function App() {
   }
   function edit(memory: Memory) {
     setEditing(memory);
-    document.getElementById('add')?.scrollIntoView();
+    setFormOpen(true);
   }
   function deleteMemory(id: string) {
     if (window.confirm('Delete this memory?') && remove(id)) {
@@ -40,7 +41,14 @@ export default function App() {
             {error}
           </p>
         )}
-        <section className="workspace" id="archive">
+        <div className="archive-heading" id="archive">
+          <p className="eyebrow">02 / THE PERSONAL COLLECTION</p>
+          <h2>THE ARCHIVE.</h2>
+          <button className="primary" onClick={() => setFormOpen((open) => !open)}>
+            {formOpen ? 'Close editor' : '+ Add memory'}
+          </button>
+        </div>
+        <section className={formOpen ? 'workspace editor-open' : 'workspace'}>
           <MemoryArchive
             memories={memories}
             ready={ready}
@@ -51,14 +59,19 @@ export default function App() {
             onEdit={edit}
             onDelete={deleteMemory}
           />
-          <MemoryForm
-            key={editing?.id ?? 'new'}
-            initial={editing}
-            ready={ready}
-            onSave={upsert}
-            setError={setError}
-            onCancel={() => setEditing(undefined)}
-          />
+          {formOpen && (
+            <MemoryForm
+              key={editing?.id ?? 'new'}
+              initial={editing}
+              ready={ready}
+              onSave={upsert}
+              setError={setError}
+              onCancel={() => {
+                setEditing(undefined);
+                setFormOpen(false);
+              }}
+            />
+          )}
         </section>
         <ImportPanel ready={ready} onSave={upsert} />
         <MemorialBuilder chosen={chosen} />

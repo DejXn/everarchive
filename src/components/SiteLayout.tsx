@@ -16,42 +16,55 @@ export function SiteHeader() {
 export function Hero() {
   return (
     <section className="hero">
-      <div className="hero-copy">
-        <p className="eyebrow">THE PERSONAL ARCHIVE / VOL. 01</p>
-        <h1>
-          Every memory
-          <br />
-          <em>has a home.</em>
-        </h1>
-        <p>Preserve the words, photographs and moments that tell your family's story.</p>
-        <a className="primary" href="#add">
-          Archive a memory ↗
-        </a>
+      <div className="edition-line">
+        <span>INDEPENDENT MEMORY ARCHIVE</span>
+        <span>EST. 2026 / VOL. 01</span>
       </div>
-      <div className="book-object" aria-hidden="true">
-        <div className="book-page">
-          <span>EVERARCHIVE / 01</span>
-          <strong>
-            THE
+      <div className="editorial-title">
+        <p>
+          For the people
+          <br />
+          we carry with us.
+        </p>
+        <h1>
+          THE ART OF
+          <br />
+          <em>REMEMBERING.</em>
+        </h1>
+      </div>
+      <div className="editorial-spread">
+        <div className="editorial-left">
+          <p className="eyebrow">01 — THE COLLECTION</p>
+          <h2>
+            Life, in
             <br />
-            STORIES
-            <br />
-            WE KEEP.
-          </strong>
-          <i>Collected moments.</i>
-          <small>001</small>
+            little pieces.
+          </h2>
+          <p>
+            Photographs. Conversations. The ordinary moments that become extraordinary
+            with time.
+          </p>
+          <a className="primary" href="#archive">
+            Explore your archive ↗
+          </a>
+          <a className="editorial-link" href="#import">
+            Collect from your device ↗
+          </a>
+          <small>001 / EVERARCHIVE</small>
         </div>
-        <div className="book-page book-right">
-          <div className="photo-placeholder">
-            <span>
-              YOUR
-              <br />
-              PHOTOGRAPH
-              <br />
-              HERE
-            </span>
-          </div>
-          <i>From the family archive.</i>
+        <figure className="editorial-photo">
+          <img
+            src={import.meta.env.BASE_URL + 'images/editorial-family.jpg'}
+            alt="Family together outdoors, illustrative stock photograph"
+          />
+          <figcaption>
+            <span>FIG. 01 — TOGETHER</span>
+            <span>ILLUSTRATIVE PHOTOGRAPH / UNSPLASH</span>
+          </figcaption>
+        </figure>
+        <div className="editorial-right">
+          <span>FIELD NOTES / 01</span>
+          <p>“What we keep tells the story of who we are.”</p>
           <small>002</small>
         </div>
       </div>
